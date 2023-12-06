@@ -22,7 +22,10 @@ void UAttributeMenuWidgetController::BroadcastInitialValues()
 
 	check(AttributeInfo);
 
-	FAuraAttributeInfo Info = AttributeInfo->FindAttributeInfoForTag(FAuraGameplayTags::Get().Attributes_Primary_Strength);
-	Info.AttributeValue = AuraAttributeSet->GetStrength();
-	AttributeInfoDelegate.Broadcast(Info);
+	for (const TTuple<FGameplayTag, FGameplayAttribute(*)()> Pair : AuraAttributeSet->TagsToAttributes)
+	{
+		FAuraAttributeInfo Info = AttributeInfo->FindAttributeInfoForTag(Pair.Key);
+		Info.AttributeValue = Pair.Value().GetNumericValue(AuraAttributeSet);
+		AttributeInfoDelegate.Broadcast(Info);
+	}
 }
