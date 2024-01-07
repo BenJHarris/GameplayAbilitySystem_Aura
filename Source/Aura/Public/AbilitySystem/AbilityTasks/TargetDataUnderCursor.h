@@ -25,4 +25,7 @@ class AURA_API UTargetDataUnderCursor : public UAbilityTask
 private:
 	virtual void Activate() override;
 	void SendMouseCursorData();
+
+	
+	void OnTargetDataReplicatedCallback(const FGameplayAbilityTargetDataHandle& DataHandle, FGameplayTag ActivationTag);
 };
