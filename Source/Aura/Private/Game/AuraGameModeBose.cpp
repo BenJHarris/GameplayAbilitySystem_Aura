@@ -1,5 +1,5 @@
 // Copyright Ben Harris
 
 
-#include "Game/AuraGameModeBose.h"
+#include "..\..\Public\Game\AuraGameModeBase.h"
 
