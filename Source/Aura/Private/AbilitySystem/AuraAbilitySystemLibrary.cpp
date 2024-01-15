@@ -50,13 +50,9 @@ UAttributeMenuWidgetController* UAuraAbilitySystemLibrary::GetAttributeMenuWidge
 
 void UAuraAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* WorldContextObject, ECharacterClass CharacterClass, float Level, UAbilitySystemComponent* AbilitySystemComponent)
 {
-	const AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
-	if (!AuraGameMode)
-	{
-		return;
-	}
+	const UCharacterClassInfo* CharacterClassInfo = GetCharacterClassInfo(WorldContextObject);
+	if (!CharacterClassInfo) return;
 	
-	const UCharacterClassInfo* CharacterClassInfo = AuraGameMode->CharacterClassInfo;
 	const FCharacterClassDefaultInfo ClassDefaultInfo = CharacterClassInfo->GetClassDefaultInfo(CharacterClass);
 
 	FGameplayEffectContextHandle ContextHandle = AbilitySystemComponent->MakeEffectContext();
@@ -75,15 +71,22 @@ void UAuraAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* World
 void UAuraAbilitySystemLibrary::GiveStartupAbilities(const UObject* WorldContextObject,
 	UAbilitySystemComponent* AbilitySystemComponent)
 {
-	const AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
-	if (!AuraGameMode)
-	{
-		return;
-	}
+	const UCharacterClassInfo* CharacterClassInfo = GetCharacterClassInfo(WorldContextObject);
+	if (!CharacterClassInfo) return;
 	
-	for (const TSubclassOf<UGameplayAbility> AbilityClass : AuraGameMode->CharacterClassInfo->CommonAbilities)
+	for (const TSubclassOf<UGameplayAbility> AbilityClass : CharacterClassInfo->CommonAbilities)
 	{
 		FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(AbilityClass, 1);
 		AbilitySystemComponent->GiveAbility(AbilitySpec);
 	}
+}
+
+UCharacterClassInfo* UAuraAbilitySystemLibrary::GetCharacterClassInfo(const UObject* WorldContextObject)
+{
+	const AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
+	if (!AuraGameMode)
+	{
+		return nullptr;
+	}
+	return AuraGameMode->CharacterClassInfo;
 }
