@@ -44,8 +44,8 @@ void AAuraEnemy::PossessedBy(AController* NewController)
 	AuraAIController->GetBlackboardComponent()->InitializeBlackboard(*BehaviorTree->BlackboardAsset.Get());
 	AuraAIController->RunBehaviorTree(BehaviorTree);
 	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), false);
-	bool bRangedAttacker = CharacterClass == ECharacterClass::Ranger || CharacterClass == ECharacterClass::Elementalist;
-	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("RangedAttacker"), false);
+	const bool bRangedAttacker = CharacterClass == ECharacterClass::Ranger || CharacterClass == ECharacterClass::Elementalist;
+	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("RangedAttacker"), bRangedAttacker);
 }
 
 void AAuraEnemy::HighlightActor()
