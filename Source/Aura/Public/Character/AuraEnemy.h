@@ -42,7 +42,7 @@ public:
 
 	void HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
 
-	UPROPERTY(BlueprintReadOnly, Category="Combat")
+	UPROPERTY(BlueprintReadOnly, Category="C)ombat")
 	bool bHitReacting = false;
 
 	UPROPERTY(BlueprintReadOnly, Category="Movement")
