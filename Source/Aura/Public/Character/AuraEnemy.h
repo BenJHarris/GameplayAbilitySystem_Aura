@@ -44,10 +44,10 @@ public:
 
 	void HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
 
-	UPROPERTY(BlueprintReadOnly, Category="C)ombat")
+	UPROPERTY(BlueprintReadOnly, Category="Combat")
 	bool bHitReacting = false;
 
-	UPROPERTY(BlueprintReadOnly, Category="Movement")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Movement")
 	float BaseWalkSpeed = 250.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Movement")
