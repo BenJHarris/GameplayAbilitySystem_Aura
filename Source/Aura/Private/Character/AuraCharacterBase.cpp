@@ -46,6 +46,11 @@ TArray<FTaggedMontage> AAuraCharacterBase::GetAttackMontages_Implementation()
 	return AttackMontages;
 }
 
+UNiagaraSystem* AAuraCharacterBase::GetBloodEffect_Implementation() const
+{
+	return BloodEffect;
+}
+
 void AAuraCharacterBase::MulticastHandleDeath_Implementation()
 {
 	Weapon->SetSimulatePhysics(true);
