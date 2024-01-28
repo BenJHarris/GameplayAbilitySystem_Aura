@@ -61,10 +61,10 @@ protected:
 
 	bool bDead = false;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly, Category="GAS")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly, Category="GAS")
 	TObjectPtr<UAttributeSet> AttributeSet;
 	
 	virtual void InitAbilityActorInfo();
