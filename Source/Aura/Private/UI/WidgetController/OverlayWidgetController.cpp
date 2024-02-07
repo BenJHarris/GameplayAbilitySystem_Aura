@@ -93,7 +93,7 @@ void UOverlayWidgetController::OnInitializeStartupAbilities(UAuraAbilitySystemCo
 	AuraAbilitySystemComponent->ForEachAbility(BroadcastDelegate);
 }
 
-void UOverlayWidgetController::OnXpChanged(int32 NewXP)
+void UOverlayWidgetController::OnXpChanged(const int32 NewXP)
 {
 	const AAuraPlayerState* AuraPlayerState = CastChecked<AAuraPlayerState>(PlayerState);
 	const ULevelUpInfo* LevelUpInfo = AuraPlayerState->LevelUpInfo.Get();
