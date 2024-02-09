@@ -26,7 +26,8 @@ public:
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	FORCEINLINE int32 GetPlayerLevel() const { return Level;}
-	
+
+	int32 GetXP() const;
 	void SetXP(const int32 InXP);
 	void AddToXP(const int32 InXP);
 

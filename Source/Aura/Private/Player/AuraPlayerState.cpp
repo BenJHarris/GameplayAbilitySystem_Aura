@@ -32,6 +32,11 @@ void AAuraPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
 }
 
 
+int32 AAuraPlayerState::GetXP() const
+{
+	return XP;
+}
+
 void AAuraPlayerState::SetXP(const int32 InXP)
 {
 	XP = InXP;
