@@ -27,10 +27,10 @@ public:
 	FAttributeInfoSignature AttributeInfoDelegate;
 
 	UPROPERTY(BlueprintAssignable, Category="GAS|Stats")
-	FOnPlayerStatChangedSignature AttributeChangedDelegate;
+	FOnPlayerStatChangedSignature AttributePointsChangedDelegate;
 
 	UPROPERTY(BlueprintAssignable, Category="GAS|Stats")
-	FOnPlayerStatChangedSignature SpellPointChangedDelegate;
+	FOnPlayerStatChangedSignature SpellPointsChangedDelegate;
 
 protected:
 
