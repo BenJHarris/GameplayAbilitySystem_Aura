@@ -12,10 +12,9 @@
 void UAttributeMenuWidgetController::BindCallbacksToDependencies()
 {
 	Super::BindCallbacksToDependencies();
-
-	const UAuraAttributeSet* AuraAttributeSet = CastChecked<UAuraAttributeSet>(AttributeSet);
+	
 	check(AttributeInfo);
-	for (auto& Pair : AuraAttributeSet->TagsToAttributes)
+	for (auto& Pair : GetAuraAttributeSet()->TagsToAttributes)
 	{
 		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Pair.Value()).AddLambda(
 			[this, Pair](const FOnAttributeChangeData& Data)
@@ -23,9 +22,8 @@ void UAttributeMenuWidgetController::BindCallbacksToDependencies()
 				BroadcastAttributeInfo(Pair.Key, Pair.Value());
 			});
 	}
-
-	AAuraPlayerState* AuraPlayerState = CastChecked<AAuraPlayerState>(PlayerState);
-	AuraPlayerState->OnPlayerAttributePointsChangedDelegate.AddLambda([this](int32 Points)
+	
+	GetAuraPlayerState()->OnPlayerAttributePointsChangedDelegate.AddLambda([this](int32 Points)
 	{
 		AttributePointsChangedDelegate.Broadcast(Points);
 	});
@@ -38,22 +36,19 @@ void UAttributeMenuWidgetController::BindCallbacksToDependencies()
 void UAttributeMenuWidgetController::BroadcastInitialValues()
 {
 	Super::BroadcastInitialValues();
-
-	const UAuraAttributeSet* AuraAttributeSet = CastChecked<UAuraAttributeSet>(AttributeSet);
+	
 	check(AttributeInfo);
-	for (const TTuple<FGameplayTag, FGameplayAttribute(*)()> Pair : AuraAttributeSet->TagsToAttributes)
+	for (const TTuple<FGameplayTag, FGameplayAttribute(*)()> Pair : GetAuraAttributeSet()->TagsToAttributes)
 	{
 		BroadcastAttributeInfo(Pair.Key, Pair.Value());
 	}
-
-	const AAuraPlayerState* AuraPlayerState = CastChecked<AAuraPlayerState>(PlayerState);
-	AttributePointsChangedDelegate.Broadcast(AuraPlayerState->GetAttributePoints());
+	
+	AttributePointsChangedDelegate.Broadcast(GetAuraPlayerState()->GetAttributePoints());
 }
 
 void UAttributeMenuWidgetController::UpgradeAttribute(const FGameplayTag& AttributeTag)
 {
-	UAuraAbilitySystemComponent* AuraAbilitySystemComponent = CastChecked<UAuraAbilitySystemComponent>(AbilitySystemComponent);
-	AuraAbilitySystemComponent->UpgradeAttribute(AttributeTag);
+	GetAuraAbilitySystemComponent()->UpgradeAttribute(AttributeTag);
 }
 
 void UAttributeMenuWidgetController::BroadcastAttributeInfo(const FGameplayTag& AttributeTag, const FGameplayAttribute& Attribute) const
