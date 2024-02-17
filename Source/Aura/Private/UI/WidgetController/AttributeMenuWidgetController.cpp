@@ -27,10 +27,6 @@ void UAttributeMenuWidgetController::BindCallbacksToDependencies()
 	{
 		AttributePointsChangedDelegate.Broadcast(Points);
 	});
-	AuraPlayerState->OnPlayerSpellPointsChangedDelegate.AddLambda([this](int32 Points)
-	{
-		SpellPointsChangedDelegate.Broadcast(Points);
-	});
 }
 
 void UAttributeMenuWidgetController::BroadcastInitialValues()
