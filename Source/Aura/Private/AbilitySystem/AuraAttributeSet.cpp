@@ -219,8 +219,9 @@ void UAuraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallba
 	else if (Data.EvaluatedData.Attribute == GetIncomingDamageAttribute())
 	{
 		HandleIncomingDamage(Props);
-	} else if (Data.EvaluatedData.Attribute == GetIncomingXPAttribute())
-	{
+	}
+	else if (Data.EvaluatedData.Attribute == GetIncomingXPAttribute())
+	{	
 		HandleIncomingXP(Props);
 	}
 }
