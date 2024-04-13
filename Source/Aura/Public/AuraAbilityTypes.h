@@ -46,7 +46,10 @@ struct FDamageEffectParams
 	float DebuffFrequency = 0.f;
 
 	UPROPERTY()
-	float DeathImpulseMagnuted = 0.f;
+	float DeathImpulseMagnitude = 0.f;
+
+	UPROPERTY()
+	FVector DeathImpulse = FVector::ZeroVector;
 };
 
 USTRUCT(BlueprintType)
@@ -63,6 +66,7 @@ public:
 	float GetDebuffDuration() const { return DebuffDuration; }
 	float GetDebuffFrequeency() const { return DebuffFrequency; }
 	TSharedPtr<FGameplayTag> GetDamageType() const { return DamageType; }
+	FVector GetDeathImpulse() const { return DeathImpulse; }
 
 	void SetIsCriticalHit(const bool bInIsCriticalHit) { bIsCriticalHit = bInIsCriticalHit; }
 	void SetIsBlockedHit(const bool bInIsBlockedHit) { bIsBlockedHit = bInIsBlockedHit; }
@@ -71,6 +75,7 @@ public:
 	void SetDebuffDuration(const float InDebuffDuration) { DebuffDuration = InDebuffDuration; }
 	void SetDebuffFrequency(const float InDebuffFrequency) { DebuffFrequency = InDebuffFrequency; }
 	void SetDamageType(const TSharedPtr<FGameplayTag> InDamageType) { DamageType = InDamageType; }
+	void SetDeathImpulse(const FVector InDeathImpulse) { DeathImpulse = InDeathImpulse; }
 
 	/** Creates a copy of this context, used to duplicate for later modifications */
 	virtual FAuraGameplayEffectContext* Duplicate() const override
@@ -116,6 +121,9 @@ protected:
 	float DebuffFrequency = 0.f;
 	
 	TSharedPtr<FGameplayTag> DamageType = nullptr;
+
+	UPROPERTY()
+	FVector DeathImpulse = FVector::ZeroVector;
 	
 };
 
