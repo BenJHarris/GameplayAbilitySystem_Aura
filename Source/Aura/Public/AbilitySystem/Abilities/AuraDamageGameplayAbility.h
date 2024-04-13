@@ -33,15 +33,18 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category="Damage")
 	FScalableFloat Damage;
 
-	UPROPERTY(EditDefaultsOnly, Category="Debuff")
+	UPROPERTY(EditDefaultsOnly, Category="Damage")
 	float DebuffChance = 20.f;
 
-	UPROPERTY(EditDefaultsOnly, Category="Debuff")
+	UPROPERTY(EditDefaultsOnly, Category="Damage")
 	float DebuffDamage = 5.f;
 
-	UPROPERTY(EditDefaultsOnly, Category="Debuff")
+	UPROPERTY(EditDefaultsOnly, Category="Damage")
 	float DebuffFrequency = 1.f;
 
-	UPROPERTY(EditDefaultsOnly, Category="Debuff")
+	UPROPERTY(EditDefaultsOnly, Category="Damage")
 	float DebuffDuration = 5.f;
+
+	UPROPERTY(EditDefaultsOnly, Category="Damage")
+	float DeathImpulseMagnitude = 60.f;
 };
