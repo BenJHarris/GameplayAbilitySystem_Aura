@@ -99,7 +99,7 @@ void UAuraFireBolt::SpawnProjectiles(const FVector& ProjectileTargetLocation, co
 			Cast<APawn>(GetOwningActorFromActorInfo()),
 			ESpawnActorCollisionHandlingMethod::AlwaysSpawn);
 		Projectile->DamageEffectParams = MakeDamageEffectParamsFromClassDefaults();
-		if (HomingTarget->Implements<UCombatInterface>())
+		if (HomingTarget && HomingTarget->Implements<UCombatInterface>())
 		{
 			Projectile->ProjectileMovement->HomingTargetComponent = HomingTarget->GetRootComponent();
 		} else
