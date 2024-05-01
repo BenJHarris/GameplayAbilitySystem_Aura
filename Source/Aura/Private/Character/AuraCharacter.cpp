@@ -150,18 +150,19 @@ void AAuraCharacter::OnRep_Stunned()
 {
 	if (UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent))
 	{
-		FGameplayTagContainer BlockedTags;
+		FGameplayTagContainer TagsToAddOrRemove;
 		const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
-		BlockedTags.AddTag(GameplayTags.Player_Block_CursorTrace);
-		BlockedTags.AddTag(GameplayTags.Player_Block_InputHeld);
-		BlockedTags.AddTag(GameplayTags.Player_Block_InputPressed);
-		BlockedTags.AddTag(GameplayTags.Player_Block_InputReleased);
+		TagsToAddOrRemove.AddTag(GameplayTags.Player_Block_CursorTrace);
+		TagsToAddOrRemove.AddTag(GameplayTags.Player_Block_InputHeld);
+		TagsToAddOrRemove.AddTag(GameplayTags.Player_Block_InputPressed);
+		TagsToAddOrRemove.AddTag(GameplayTags.Player_Block_InputReleased);
+		TagsToAddOrRemove.AddTag(GameplayTags.Debuff_Stun);
 		if (bIsStunned)
 		{
-			AuraASC->AddLooseGameplayTags(BlockedTags);
+			AuraASC->AddLooseGameplayTags(TagsToAddOrRemove);
 		} else
 		{
-			AuraASC->RemoveLooseGameplayTags(BlockedTags);
+			AuraASC->RemoveLooseGameplayTags(TagsToAddOrRemove);
 		}
 		
 	}
