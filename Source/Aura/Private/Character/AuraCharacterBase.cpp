@@ -42,6 +42,7 @@ void AAuraCharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	
 	DOREPLIFETIME(AAuraCharacterBase, bIsStunned);
+	DOREPLIFETIME(AAuraCharacterBase, bIsBeingShocked);
 }
 
 UAbilitySystemComponent* AAuraCharacterBase::GetAbilitySystemComponent() const
@@ -112,6 +113,16 @@ USkeletalMeshComponent* AAuraCharacterBase::GetWeapon_Implementation()
 	return Weapon;
 }
 
+void AAuraCharacterBase::SetIsBeingShocked_Implementation(bool bInIsBeingShocked)
+{
+	bIsBeingShocked = bInIsBeingShocked;
+}
+
+bool AAuraCharacterBase::IsBeingShocked_Implementation() const
+{
+	return bIsBeingShocked;
+}
+
 void AAuraCharacterBase::MulticastHandleDeath_Implementation(const FVector& DeathImpulse)
 {
 	UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), GetActorRotation());
@@ -141,6 +152,19 @@ void AAuraCharacterBase::StunTagChanged(const FGameplayTag CallbackTag, int32 Ne
 
 void AAuraCharacterBase::OnRep_Stunned()
 {
+	if (UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent))
+	{
+		FGameplayTagContainer TagsToAddOrRemove;
+		const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
+		TagsToAddOrRemove.AddTag(GameplayTags.Debuff_Stun);
+		if (bIsStunned)
+		{
+			AuraASC->AddLooseGameplayTags(TagsToAddOrRemove);
+		} else
+		{
+			AuraASC->RemoveLooseGameplayTags(TagsToAddOrRemove);
+		}
+	}
 }
 
 void AAuraCharacterBase::BeginPlay()

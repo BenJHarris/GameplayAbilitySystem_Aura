@@ -148,6 +148,7 @@ int32 AAuraCharacter::GetSpellPoints_Implementation() const
 
 void AAuraCharacter::OnRep_Stunned()
 {
+	Super::OnRep_Stunned();
 	if (UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent))
 	{
 		FGameplayTagContainer TagsToAddOrRemove;
@@ -156,7 +157,6 @@ void AAuraCharacter::OnRep_Stunned()
 		TagsToAddOrRemove.AddTag(GameplayTags.Player_Block_InputHeld);
 		TagsToAddOrRemove.AddTag(GameplayTags.Player_Block_InputPressed);
 		TagsToAddOrRemove.AddTag(GameplayTags.Player_Block_InputReleased);
-		TagsToAddOrRemove.AddTag(GameplayTags.Debuff_Stun);
 		if (bIsStunned)
 		{
 			AuraASC->AddLooseGameplayTags(TagsToAddOrRemove);
