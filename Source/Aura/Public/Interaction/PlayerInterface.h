@@ -63,4 +63,12 @@ public:
 	UFUNCTION(BlueprintNativeEvent)
 	int32 GetSpellPoints() const;
 	/* End Spell Points */
+
+	/* Magic Circle */
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void ShowMagicCircle(UMaterialInterface* DecalMaterial = nullptr);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void HideMagicCircle();
+	/* End Magic Circle */
 };

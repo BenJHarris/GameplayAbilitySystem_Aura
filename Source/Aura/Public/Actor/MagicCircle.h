@@ -15,11 +15,11 @@ public:
 	AMagicCircle();
 	virtual void Tick(float DeltaTime) override;
 
-protected:
-	virtual void BeginPlay() override;
-
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UDecalComponent> MagicCircleDecalComponent;
+
+protected:
+	virtual void BeginPlay() override;
 	
 
 };
