@@ -167,6 +167,11 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 
 		DamageTypeValue *= (100.f - Resistance) / 100.f;
 
+		if (DamageTypeValue <= 0)
+		{
+			continue;
+		}
+		
 		if (UAuraAbilitySystemLibrary::IsRadialDamage(EffectContextHandle))
 		{
 			DamageTypeValue = UAuraAbilitySystemLibrary::GetRadialDamageWithFalloff(
