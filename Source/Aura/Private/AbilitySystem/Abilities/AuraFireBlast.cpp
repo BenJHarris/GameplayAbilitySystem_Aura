@@ -1,9 +1,9 @@
 // Copyright Ben Harris
 
 
-#include "AbilitySystem/Abilities/AuraFirstBlast.h"
+#include "AbilitySystem/Abilities/AuraFireBlast.h"
 
-FString UAuraFirstBlast::GetDescription(int32 Level)
+FString UAuraFireBlast::GetDescription(int32 Level)
 {
 	const int32 ScaledDamage = Damage.GetValueAtLevel(Level);
 	const float ManaCost = GetManaCost(Level);
@@ -27,7 +27,7 @@ FString UAuraFirstBlast::GetDescription(int32 Level)
 			);
 }
 
-FString UAuraFirstBlast::GetNextLevelDescription(int32 Level)
+FString UAuraFireBlast::GetNextLevelDescription(int32 Level)
 {
 	const int32 ScaledDamage = Damage.GetValueAtLevel(Level);
 	const float ManaCost = GetManaCost(Level);
@@ -49,4 +49,9 @@ FString UAuraFirstBlast::GetNextLevelDescription(int32 Level)
 			NumFireBalls,
 			ScaledDamage
 			);
+}
+
+TArray<AAuraFireBall*> UAuraFireBlast::SpawnFireBalls()
+{
+	return TArray<AAuraFireBall*>();
 }
