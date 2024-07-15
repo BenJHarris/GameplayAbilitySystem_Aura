@@ -39,8 +39,11 @@ protected:
 
 	virtual void Destroyed() override;
 
-private:
+	bool IsValidOverlap(const AActor* OtherActor);
+
 	bool bHit = false;
+
+private:
 	
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USphereComponent> Sphere;
