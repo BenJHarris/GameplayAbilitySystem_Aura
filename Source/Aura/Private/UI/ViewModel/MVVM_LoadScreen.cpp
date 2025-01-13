@@ -48,6 +48,17 @@ void UMVVM_LoadScreen::NewGameButtonPressed(int32 Slot)
 
 void UMVVM_LoadScreen::SelectSlotButtonPressed(int32 Slot)
 {
+	for (const TTuple<int32, UMVVM_LoadSlot*> Pair: LoadSlots)
+	{
+		if (Pair.Key == Slot)
+		{
+			Pair.Value->EnableSelectSlotButton.Broadcast(false);
+		} else
+		{
+			Pair.Value->EnableSelectSlotButton.Broadcast(true);
+		}
+		
+	}
 }
 
 void UMVVM_LoadScreen::SetNumLoadSlots(int32 InNumLoadSlots)
