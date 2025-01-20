@@ -96,5 +96,6 @@ void UMVVM_LoadScreen::LoadData()
 		TEnumAsByte<ESaveSlotStatus> SaveSlotStatus = SaveObject->SaveSlotStatus;
 		Pair.Value->SlotStatus = SaveSlotStatus;
 		Pair.Value->InitializeSlot();
+		Pair.Value->SetMapName(SaveObject->MapName);
 	}
 }
