@@ -20,6 +20,7 @@ class AURA_API AAuraCharacter : public AAuraCharacterBase, public IPlayerInterfa
 public:
 	AAuraCharacter();
 	virtual void PossessedBy(AController* NewController) override;
+	void LoadProgress();
 	virtual void OnRep_PlayerState() override;
 
 	/** Combat Interface */

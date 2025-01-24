@@ -41,12 +41,14 @@ public:
 	/* End Level */
 
 	/* Attribute Points */
+	void SetAttributePoints(const int32 InAttributePoints);
 	void AddToAttributePoints(const int32 InAttributePoints);
 	FORCEINLINE int32 GetSpellPoints() const { return SpellPoints; }
 	FOnPlayerStatChanged OnPlayerAttributePointsChangedDelegate;
 	/* End Attribute Points */
 	
 	/* Spell Points */
+	void SetSpellPoints(const int32 InSpellPoints);
 	void AddToSpellPoints(const int32 InSpellPoints);
 	FORCEINLINE int32 GetAttributePoints() const { return AttributePoints; }
 	FOnPlayerStatChanged OnPlayerSpellPointsChangedDelegate;
