@@ -12,6 +12,7 @@ class UAbilitySystemComponent;
 class UAttributeSet;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnPlayerStatChanged, int32); /* Stat Value */
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnLevelChanged, int32 /* Stat Value */, bool /* bLevelUp */); 
 
 /**
  * 
@@ -37,9 +38,9 @@ public:
 	void SetLevel(const int32 InLevel);
 	void AddToLevel(const int32 InLevel);
 	FORCEINLINE int32 GetPlayerLevel() const { return Level; }
-	FOnPlayerStatChanged OnPlayerLevelChangedDelegate;
+	FOnLevelChanged OnPlayerLevelChangedDelegate;
 	/* End Level */
-
+ 
 	/* Attribute Points */
 	void SetAttributePoints(const int32 InAttributePoints);
 	void AddToAttributePoints(const int32 InAttributePoints);
