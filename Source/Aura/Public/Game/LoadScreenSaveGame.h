@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/SaveGame.h"
 #include "LoadScreenSaveGame.generated.h"
 
@@ -13,6 +14,8 @@ enum ESaveSlotStatus
 	EnterName,
 	Taken
 };
+
+class UGameplayAbility;
 
 USTRUCT(BlueprintType)
 struct FSavedAbility
