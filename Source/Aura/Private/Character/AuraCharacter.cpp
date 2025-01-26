@@ -71,7 +71,8 @@ void AAuraCharacter::LoadProgress()
 			AddCharacterAbilities();
 		} else
 		{
-			// TODO: Load in abilities from disk
+			UAuraAbilitySystemComponent* AuraAbilitySystemComponent = Cast<UAuraAbilitySystemComponent>(GetAbilitySystemComponent());
+			AuraAbilitySystemComponent->AddCharacterAbilitiesFromSaveData(SaveData);
 			
 			if (AAuraPlayerState* AuraPlayerState = Cast<AAuraPlayerState>(GetPlayerState()))
 			{
@@ -228,6 +229,9 @@ void AAuraCharacter::SaveProgress_Implementation(const FName& CheckpointTag)
 
 		UAuraAbilitySystemComponent* AuraAbilitySystemComponent = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent);
 		FForEachAbility SaveAbilityDelegate;
+
+		SaveData->SavedAbilities.Empty();
+		
 		SaveAbilityDelegate.BindLambda([this, AuraAbilitySystemComponent, &SaveData](const FGameplayAbilitySpec& AbilitySpec)
 		{
 			FSavedAbility SavedAbility;
