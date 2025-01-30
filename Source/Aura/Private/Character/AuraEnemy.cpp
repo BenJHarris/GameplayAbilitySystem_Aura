@@ -28,6 +28,14 @@ AAuraEnemy::AAuraEnemy()
 	HealthBar = CreateDefaultSubobject<UWidgetComponent>("HealthBar");
 	HealthBar->SetupAttachment(GetRootComponent());
 
+	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+	GetMesh()->MarkRenderStateDirty();
+	if (Weapon)
+	{
+		Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+		Weapon->MarkRenderStateDirty();
+	}
+
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
@@ -53,11 +61,10 @@ void AAuraEnemy::PossessedBy(AController* NewController)
 void AAuraEnemy::HighlightActor_Implementation()
 {
 	GetMesh()->SetRenderCustomDepth(true);
-	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
 	if (Weapon)
 	{
 		Weapon->SetRenderCustomDepth(true);
-		Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+		
 	}
 }
 
