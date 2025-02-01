@@ -20,8 +20,11 @@ class AURA_API ACheckpoint : public APlayerStart, public ISaveInterface, public 
 public:
 	ACheckpoint(const FObjectInitializer& ObjectInitializer);
 
-	UPROPERTY(BlueprintReadOnly, SaveGame)
+	UPROPERTY(BlueprintReadWrite, SaveGame)
 	bool bReached = false;
+
+	UPROPERTY(EditAnywhere)
+	bool bBindOverlapCallback = true;
 
 	/* Save Interface */
 	virtual bool ShouldLoadTransform_Implementation() override { return false; }
@@ -38,6 +41,7 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void CheckpointReached(UMaterialInstanceDynamic* DynamicMaterialInstance);
 
+	UFUNCTION(BlueprintCallable)
 	void HandleGlowEffects();
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
